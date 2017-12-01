@@ -1,0 +1,75 @@
+<iframe src={{specialURL}} width=100% height=11000px *ngIf="special_product_listing!=false" scrolling="no">
+  <p>Your browser does not support iframes.</p>
+</iframe>
+<div class="row" style="min-height: 700px" *ngIf="special_product_listing==false">
+  <div class="col-sm-4" style="margin-bottom: 47px; margin-right: 20px; ">
+    <div data-toggle="modal" (click)="modal_type='image'" data-target="#exampleModal">
+      <img class="image lg-up-hide" src="assets/images/thumbnails_200/200_{{id | padwithzeroes}}.jpg" style="width: 100%; max-width: 200px; cursor: pointer;">
+      <img class="image lg-up-show" src="assets/images/thumbnails_200/200_{{id | padwithzeroes}}.jpg" style="width: 200px; height: 300px; cursor: pointer;">
+      <br>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div style="min-height: 200px">
+      <div style="font-size: x-large; padding-bottom: 20px">
+        <strong>{{product_object.name}}</strong>
+        <br><a [routerLink]="['/dublin/subcategory/', product_object.sc]" style="font-size: small;"> 
+        {{theNameOfTheSubcategoryOfThisProduct}}</a>
+      </div>
+      <span *ngIf="loadingGifIsRequired && waitOver">
+        <img src="/assets/images/app/loading5.gif">
+      Loading....
+      </span>
+      <div *ngIf="!loadingGifIsRequired">
+        <div *ngFor="let extra of extras"> <span style="color:green"> &#10003;</span> {{extra}} </div>
+        <br>
+        <div [innerHTML]="(item | async)?.data1"></div>
+        <br>
+        <br>
+        <div style="padding-bottom: 5px" class="text-center lg-up-hide">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="modal_type='order'"><span class="oi oi-envelope-closed"></span> Call Now</button>
+        </div>
+        <div class="lg-up-show text-center bg-primary text-light" style="padding: 10px; font-size: 25px">{{callNow}}</div>
+        <br>
+        <br>
+        <div [innerHTML]="(item | async)?.data2"></div>
+        <br>
+        <div style="padding-bottom: 5px" class="text-center lg-up-hide">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="modal_type='order'"><span class="oi oi-envelope-closed"></span> Call Now</button>
+        </div>
+        <div class="lg-up-show text-center bg-primary text-light" style="padding: 10px; font-size: 25px">{{callNow}}</div>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <span style="cursor: pointer;" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></span>
+      </div>
+      <div class="modal-body">
+        <div style="width: 100%" class="text-center">
+          <img *ngIf="modal_type=='image'" style="width: 100%; max-width: 400px;" src="assets/images/{{product_object.id | padwithzeroes}}.jpg">
+        </div>
+        <span *ngIf="modal_type=='order'">
+        For a Quote for <strong> {{product_object.name}} </strong>
+        <br>
+        <br>
+        <div class="lg-up-show">
+          <span class="ff1 halflings halflings-phone-alt">&#xe183;</span> &nbsp; {{callNow}}
+        <br>
+      </div>
+      <a style="width: 100%" type="button" class="btn btn-primary lg-up-hide" href="tel:014540666">Click Here</a>
+      </span>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>
+</div>
+<div style="margin-bottom: 100px">
+</div>

@@ -1,0 +1,88 @@
+<div style="background-color: #232F3E;">
+  <div class="custom_searchbox lg-up-hide" style="line-height: 30px; padding-top: 10px; padding-bottom: 10px">
+    <div style="display: flex; line-height: initial;">
+      <div style="padding: .1rem 1rem; background-color: #A6CC54;">
+        <span><img src="assets/images/app/search.png"></span>
+      </div>
+      <div style="flex: auto; background-color: white;">
+        <form>
+          <input autocomplete="off" autofocus class="as" name="kevin" (keyup.enter)="$event.target.blur()" [(ngModel)]="search" (ngModelChange)="bs()" placeholder="Search">
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="lg-up-show">
+        <a [routerLink]="'/'"><img src="assets/images/app/logo_.png" class="logo" style="width: 200px" ></a>
+        <br><span style="color: white; padding-left: 16px; position: relative; top: -6px;"> {{navText1}}</span>
+      </div>
+      <div class="lg-up-hide">
+        <div class="row">
+          <div class="col-9" style="padding-left: 0">
+            <a [routerLink]="'/'"><img src="assets/images/app/logo.png" style="width: 200px" ></a>
+            <br><span style="color: white; padding-left: 7px; position: relative; top: -6px;"> {{navText1}}</span>
+          </div>
+          <div class="col-3 text-right">
+            <div style="padding-top: 10px; padding-right: 13px; display: inline-block;">
+              <a href="/client "> <img src="assets/images/app/myaccount.png" style="width: 35px; opacity: 0.3;"></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7">
+      <div class="custom_searchbox lg-up-show" style="height: 29px; line-height: 30px; margin-top: 24px; margin-bottom: 20px">
+        <div style="display: flex; line-height: initial;">
+          <div style="padding: .1rem 1rem; background-color: #A6CC54;">
+            <span><img src="assets/images/app/search.png"></span>
+          </div>
+          <div style="flex: auto; background-color: white;">
+            <form>
+              <input autocomplete="off" autofocus class="as" name="kevin" (keyup.enter)="$event.target.blur()" [(ngModel)]="search" (ngModelChange)="bs()" placeholder="Search">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--     <div class="col-lg-2 text-right">
+      <div class="lg-up-show" style="padding: 10px 20px 10px 17px;"> <a href="/client "> Login </a></div>
+    </div>
+ --></div>
+</div>
+<div *ngIf=!isSearch class="row" style="background-color: #232F3E!important;  border-top: 1px solid white;">
+  <div class="col-lg-3">
+    <div class="navbar-brand lg-up-show" style="color: white!important;padding-left: 15px;padding-top: 10px;">{{navText2}}</div>
+  </div>
+  <div class="col-lg-7">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-image: inherit; background-color: #232F3E!important;border: 0;padding-left: 10px;">
+      <span class="navbar-brand lg-up-hide" style="color: white!important">{{navText2}}</span>
+      <button style="outline-color: #6AA1B6;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li *ngFor="let x of categories" class="nav-item">
+            <a [class.green]="x.id==category" class="nav-link" [routerLink]="['/dublin/category/', x.id]"> {{x.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="col-lg-2 ">
+  </div>
+</div>
+<div class="lg-up-hide">
+  <nav *ngIf=show_breadcrumb_2 class="breadcrumb">
+    <a *ngFor="let x of breadcrumb_array" [routerLink]="[x.routerlink, x.id]" class="breadcrumb-item" href="#">{{x.name}}</a>
+  </nav>
+  <nav *ngIf=show_breadcrumb class="breadcrumb" style="background-color: white">
+    <span class="breadcrumb-item active">{{name}}</span>
+  </nav>
+</div>
+<div class="lg-up-show">
+  <nav *ngIf=show_breadcrumb class="breadcrumb">
+    <a *ngFor="let x of breadcrumb_array" [routerLink]="[x.routerlink, x.id]" class="breadcrumb-item" href="#">{{x.name}}</a>
+    <span class="breadcrumb-item active">{{name}}</span>
+  </nav>
+</div>
+<div [hidden]=hide_margin_under_breadcrumb style="margin-bottom: 30px"></div>

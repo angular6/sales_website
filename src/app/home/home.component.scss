@@ -1,0 +1,19 @@
+@import "src/test.scss";
+
+.col-lg-8 img {
+  width: 50%;
+  height: 50%
+}
+
+.row div {
+  padding-right: 0px!important;
+  padding-left: 0px!important;
+}
+
+.row {
+  border: $border
+}
+
+.col-lg-4 {
+  border-right: $border
+}

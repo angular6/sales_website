@@ -1,0 +1,41 @@
+<div *ngIf="(results | filterarray:input).length > 0" class="search">
+  {{(results | filterarray:input).length}} search result(s)</div>
+<div *ngIf="input != undefined && (results | filterarray:input).length == 0" class="search" style="color: #F92751"> 0 search result(s) for {{input}}</div>
+<div style="min-height: 500px">
+  <div class="lg-up-hide">
+    <a [routerLink]="[ link, (result.name | prettyurl), result.id ]" *ngFor="let result of (is_category_or_subcategory ?  (results) : (results | filterarray:input))">
+      <div class="row" style="margin-bottom: 10px">
+        <div class="col-3" [ngSwitch]="link">
+          <img *ngSwitchCase="'/dublin/subcategory/'" class="image" src="assets/images/app/100_{{result.parent}}.jpg">
+          <img *ngSwitchDefault class="image" src="assets/images/thumbnails_100/100_{{result.id | padwithzeroes }}.jpg">
+        </div>
+        <div class="col-9">{{result.name}}
+          <br>
+          <br>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+      <div class="lg-up-show">
+        <div class="row">
+          <div class="col-lg-3" *ngFor="let result of (is_category_or_subcategory ?  (results) : (results | filterarray:input))">
+            <a [routerLink]="[ link, (result.name | prettyurl), result.id ]">
+              <div [ngSwitch]="link">
+                <img *ngSwitchCase="'/dublin/subcategory/'" src="assets/images/app/100_{{result.parent}}.jpg" class="image-lg">
+                <img *ngSwitchDefault src="assets/images/thumbnails_100/100_{{result.id | padwithzeroes }}.jpg" class="image-lg">
+              </div>
+              <div>{{result.name}}
+                <br>
+                <br>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1"></div>
+  </div>
+</div>
